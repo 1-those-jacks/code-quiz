@@ -58,46 +58,31 @@ function displayCurrentQuestion(){
 		answerBtn.value = currentQuestion.answers[i];
 		answerBtn.textContent = currentQuestion.answers[i];
 		answerBtn.setAttribute("class", "answer-button");
-		questionContainer.appendChild(answerBtn);
-		// console.log(answerBtn);
-	}
-		// answerChosen is only selecting the first instance.....
-		var answerChosen = document.getElementById("question-container");
-		var correctAnswer = document.querySelector(".answer-button");
-		answerChosen.addEventListener("click", function(){
-			if (correctAnswer.value === currentQuestion.correct){
-					//add next question function 
-					console.log ("Correct Answer");
-					console.log(correctAnswer.value);
-					questionContainer.remove();
-					nextQuestion();
-				// add next question function after introducing time penalty.
-			} else if (correctAnswer.value != currentQuestion.correct){
-				console.log("This works too");
-				console.log(correctAnswer.value);
+		questionContainer.appendChild(answerBtn);}
+		
+	function selectAnswer(){
+			var answerChoices = document.querySelector("#question-container");
+			answerChoices.addEventListener("click", function(event){
+			var answerSelected = event.target.value;
+			if (answerSelected === currentQuestion.correct){
+				console.log("Correct");
 				questionContainer.remove();
 				nextQuestion();
+			} else { console.log("Wrong");
+			questionContainer.remove();
+			nextQuestion();}
+				});
 			}
-		});}
-		// if (answerBtn.value === currentQuestion.correct) {
-		// 	console.log("correct answer");
-		// } 
-		// Move to next question
-		// var nextQuestion = document.querySelector(".answer-button");
-		// nextQuestion.addEventListener("click", function(event){
-		// 	console.log("button pressed");
-		// 	if (i < questionArray.length){
-		// 		console.log("If statement works");
-		// 		displayCurrentQuestion();
-		// 	}
-		// });
-		// if (i > currentQuestion.answers.length) {
-		// 	handleHighScores();
-		// }
+			selectAnswer();
+		}
+
 function nextQuestion(){
-	console.log("It carries over");
+	// console.log("It carries over");
 	currentQuestionIndex++;
-	displayCurrentQuestion();
+	if (currentQuestionIndex < questionArray.length){
+		displayCurrentQuestion();
+	} else {console.log("Completed Quiz");
+		handleHighScores();}
 }	
 
 
@@ -105,7 +90,7 @@ function handleHighScores(){
 	console.log("High Scores", localStorage.getItem("scores"));
 	var currentScores = JSON.parse(localStorage.getItem("scores")) || [];
 	// input for initials and scores
-	window.location.href("high_scores.html");
+	window.location.href(".high_score.html");
 }
 // Button is clicked resulting in function. Button is removed from page and replaced with question 1
 takeQuiz.addEventListener("click", function(event){
