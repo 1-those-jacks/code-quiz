@@ -15,3 +15,7 @@
 	margin: 5px 5px;
 	color: white;
 }
+
+.hidden {
+	display: none;
+}
