@@ -1,34 +1,42 @@
 // Question set
 var questionArray = [
 	{
-		// format questions with actual content once cycling...
 		num: 1,
-		questionTitle: "What is this?",
-		answers: ["A", "B", "C", "D"],
-		correct: "B",
+		questionTitle: "The following are primitive data types except?",
+		answers: ["A. Integers", "B. Methods", "C. Booleans", "D. Numbers"],
+		correct: "B. Methods",
 	},
 	{
-		// format questions with actual content once cycling...
 		num: 2,
-		questionTitle: "What is this again?",
-		answers: ["A", "B", "C", "D"],
-		correct: "A",
+		questionTitle: "A function is enclosed by?",
+		answers: ["A. {}", "B. ()", "C. .", "D. ;"],
+		correct: "A. {}",
 	},
 	{
-		// format questions with actual content once cycling...
 		num: 3,
-		questionTitle: "What is this again AGAIN?",
-		answers: ["A", "B", "C", "D"],
-		correct: "A",
+		questionTitle: "Using properties and methods after a variable uses?",
+		answers: ["A. Calling a Variable", "B. Invoking a Function", "C. Dot Notation", "D. Spot Notation"],
+		correct: "C. Dot Notation",
+	},
+	{
+		num: 4,
+		questionTitle: "Variables can be?",
+		answers: ["A. Declared", "B. Expressed", "C. Announced", "D. Declared or Expressed"],
+		correct: "D. Declared or Expressed",
+	},
+	{	
+		num: 5,
+		questionTitle: "JavaScript is a _ language.",
+		answers: ["A. Structural", "B. Presentation", "C. Programming", "D. Dead"],
+		correct: "C. Programming",
 	}
-	// add additional questions below....
 ];
 // Button is identified.
 var takeQuiz = document.getElementById("start");
 var timeEl = document.querySelector(".time");
 var submitScore = document.getElementById("submit-score");
 var playAgain = document.getElementById("play-again");
-var secondsLeft = 90;
+var secondsLeft = 100;
 var currentQuestionIndex = 0;
 // Basic timer function connected to class "time" in h1.
 function startTime() {
@@ -65,11 +73,11 @@ function displayCurrentQuestion() {
 		answerChoices.addEventListener("click", function (event) {
 			var answerSelected = event.target.value;
 			if (answerSelected === currentQuestion.correct) {
-				console.log("Correct");
+				// console.log("Correct");
 				questionContainer.remove();
 				nextQuestion();
 			} else {
-				console.log("Wrong");
+				// console.log("Wrong");
 				secondsLeft -= 5
 				questionContainer.remove();
 				nextQuestion();
@@ -85,7 +93,7 @@ function nextQuestion() {
 	if (currentQuestionIndex < questionArray.length) {
 		displayCurrentQuestion();
 	} else {
-		console.log("Completed Quiz");
+		// console.log("Completed Quiz");
 		timeEl.remove();
 		handleHighScores();
 	}
@@ -100,14 +108,12 @@ function handleHighScores() {
 }
 // Button is clicked resulting in function. Button is removed from page and replaced with question 1
 takeQuiz.addEventListener("click", function (event) {
-	console.log(event.target);
 	startTime();
 	takeQuiz.remove();
 	displayCurrentQuestion();
 });
 
 submitScore.addEventListener("click", function (event) {
-	console.log("Score Submitted");
 	var addInitials = document.getElementById("add-initials");
 	logInitials = addInitials.value;
 	localStorage.setItem("initials", JSON.stringify(logInitials));
